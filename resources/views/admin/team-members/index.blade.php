@@ -1,14 +1,22 @@
 @extends('layouts.admin')
 @section('content')
-@can('user_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.users.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
-            </a>
-        </div>
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('admin.team-members.invite') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-auto">
+                    <input class="form-control" type="text" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="col p-0">
+                    <button class="btn btn-success" type="submit">
+                        Invite
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
-@endcan
+</div>
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
@@ -101,17 +109,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                @can('user_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
 
-                                @can('user_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
 
                                 @can('user_delete')
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">

@@ -40,7 +40,6 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
-        'approved',
         'verified',
         'verified_at',
         'verification_token',
@@ -48,6 +47,7 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     public function __construct(array $attributes = [])
@@ -120,6 +120,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

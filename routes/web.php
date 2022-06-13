@@ -38,6 +38,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
+
+
+    // Team
+    Route::delete('teams/destroy', 'TeamController@massDestroy')->name('teams.massDestroy');
+    Route::resource('teams', 'TeamController');
+
+    // Blog
+    Route::delete('blogs/destroy', 'BlogController@massDestroy')->name('blogs.massDestroy');
+    Route::post('blogs/media', 'BlogController@storeMedia')->name('blogs.storeMedia');
+    Route::post('blogs/ckmedia', 'BlogController@storeCKEditorImages')->name('blogs.storeCKEditorImages');
+    Route::resource('blogs', 'BlogController');
+
+    Route::get('team-members', 'TeamMembersController@index')->name('team-members.index');
+    Route::post('team-members', 'TeamMembersController@invite')->name('team-members.invite');
+    
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
