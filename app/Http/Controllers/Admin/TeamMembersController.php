@@ -19,7 +19,7 @@ class TeamMembersController extends Controller
         $team  = Team::where('owner_id', auth()->user()->id)->first();
         $roles = Role::get(['id', 'title']);
         $users = User::where('team_id', $team->id)->get();
-
+        
         return view('admin.team-members.index', compact('team', 'users', 'roles'));
     }
 

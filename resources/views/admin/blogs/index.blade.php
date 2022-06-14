@@ -29,11 +29,17 @@
                             {{ trans('cruds.blog.fields.title') }}
                         </th>
                         <th>
+                            {{ trans('cruds.blog.fields.description') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
                     <tr>
                         <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -56,6 +62,9 @@
                             </td>
                             <td>
                                 {{ $blog->title ?? '' }}
+                            </td>
+                            <td>
+                                {{ $blog->description ?? '' }}
                             </td>
                             <td>
                                 @can('blog_show')

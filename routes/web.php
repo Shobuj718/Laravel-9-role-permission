@@ -46,8 +46,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Blog
     Route::delete('blogs/destroy', 'BlogController@massDestroy')->name('blogs.massDestroy');
-    Route::post('blogs/media', 'BlogController@storeMedia')->name('blogs.storeMedia');
-    Route::post('blogs/ckmedia', 'BlogController@storeCKEditorImages')->name('blogs.storeCKEditorImages');
     Route::resource('blogs', 'BlogController');
 
     Route::get('team-members', 'TeamMembersController@index')->name('team-members.index');
